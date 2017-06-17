@@ -43,32 +43,13 @@ apt update --fix-missing && apt upgrade -y
 
 log INFO "Installing other packages"
 apt install -y \
-    build-essential \
+    curl \
     sudo \
-    gcc \
-    g++ \
-    libssl-dev \
-    libffi-dev \
-    libxml2-dev \
-    libxslt1-dev \
-    zlib1g-dev \
-    libsqlite3-dev \
-    libjpeg-dev \
-    libpng12-dev \
+    unzip \
     lsb-release \
     apt-transport-https \
     ca-certificates \
-    unzip \
-    curl \
     software-properties-common \
-    python3-dev \
-    python3-setuptools \
-    python3-pip \
-    python3-venv \
-    python-dev \
-    python-setuptools \
-    python-pip \
-    python-virtualenv \
     sendmail \
     fail2ban \
     ufw \
@@ -77,8 +58,7 @@ apt install -y \
     tmux \
     mosh \
     htop \
-    tree \
-    nethogs
+    tree
 
 
 log INFO "Adding docker repo"
@@ -155,7 +135,7 @@ ufw allow https
 ufw allow ssh
 ufw allow 2376/tcp
 ufw allow 60000:60003/udp
-ufw allow 8000,8080,5000/tcp
+ufw allow 8000,8080,8888,5000/tcp
 ufw reload
 
 
