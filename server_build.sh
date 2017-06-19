@@ -38,9 +38,6 @@ if ! [ $(id -u) = 0 ]; then
 fi
 
 
-log INFO "Exporting envinronment variables for the other scripts"
-export FILENAME SCRIPTDIR
-
 log INFO "Upgrading initial packages"
 apt update --fix-missing && apt upgrade -y
 
