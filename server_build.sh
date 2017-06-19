@@ -47,6 +47,7 @@ apt update --fix-missing && apt upgrade -y
 
 log INFO "Installing other packages"
 apt install -y \
+    sudo \
     lsb-release \
     apt-transport-https \
     ca-certificates \

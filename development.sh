@@ -20,7 +20,6 @@ fi
 log INFO "Installing development and build packages"
 apt install -y \
     build-essential \
-    sudo \
     gcc \
     g++ \
     libssl-dev \
