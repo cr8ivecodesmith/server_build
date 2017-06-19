@@ -18,6 +18,7 @@ ssh-rsa <LONG_RSA_STR> ${SUPERUSER}@localhost
 # docker-compose should be updated accordingly as well. To check the latest
 # version of compose go to:
 # https://github.com/docker/compose/releases
+DOCKER_VER=17.03.1~ce-0~ubuntu-xenial
 COMPOSE_VER=1.13.0
 
 
@@ -37,41 +38,21 @@ if ! [ $(id -u) = 0 ]; then
 fi
 
 
+log INFO "Exporting envinronment variables for the other scripts"
+export FILENAME SCRIPTDIR
+
 log INFO "Upgrading initial packages"
 apt update --fix-missing && apt upgrade -y
 
 
 log INFO "Installing other packages"
 apt install -y \
-    build-essential \
-    sudo \
-    gcc \
-    g++ \
-    libssl-dev \
-    libffi-dev \
-    libxml2-dev \
-    libxslt1-dev \
-    zlib1g-dev \
-    libsqlite3-dev \
-    libjpeg-dev \
-    libpng12-dev \
     lsb-release \
     apt-transport-https \
     ca-certificates \
     unzip \
     curl \
     software-properties-common \
-    python3-dev \
-    python3-setuptools \
-    python3-pip \
-    python3-venv \
-    python-dev \
-    python-setuptools \
-    python-pip \
-    python-virtualenv \
-    sendmail \
-    fail2ban \
-    ufw \
     vim \
     git \
     tmux \
@@ -90,7 +71,7 @@ sudo add-apt-repository \
 
 
 log INFO "Installing docker"
-apt-get update --fix-missing && apt-get install -y docker-ce
+apt-get update --fix-missing && apt-get install -y docker-ce=$DOCKER_VER
 
 
 log INFO "Installing docker-compose"
@@ -101,24 +82,6 @@ chmod +x /usr/local/bin/docker-compose
 
 log INFO "Starting up docker"
 service docker start
-
-
-log INFO "Initial firewall config"
-cp -vf conf/ufw.deb /etc/default/ufw
-chmod 644 /etc/default/ufw
-
-
-log INFO "Configuring fail2ban"
-cp -vf conf/fail2ban.local.deb /etc/fail2ban/fail2ban.local
-cp -vf conf/jail.local.deb /etc/fail2ban/jail.local
-chmod 644 /etc/fail2ban/*.local
-service fail2ban restart
-
-
-log INFO "Configuring SSH"
-cp -vf conf/sshd_config.deb /etc/ssh/sshd_config
-chmod 600 /etc/ssh/sshd_config
-service ssh restart
 
 
 log INFO "Creating superuser"
@@ -142,33 +105,5 @@ chmod 600 /home/$SUPERUSER/.ssh/authorized_keys
 chown $SUPERUSER:$SUPERUSER -Rf /home/$SUPERUSER
 
 
-log INFO "Disabling root password"
-passwd -d root
-
-
-log INFO "Initial firewall config"
-ufw enable
-ufw default allow outgoing
-ufw default deny incoming
-ufw allow http
-ufw allow https
-ufw allow ssh
-ufw allow 2376/tcp
-ufw allow 60000:60003/udp
-ufw allow 8000,8080,5000/tcp
-ufw reload
-
-
-log INFO "Cleaning up"
-cat /dev/null > /root/.bash_history \
-    && history -c \
-    && history -w
-
-apt autoclean -y \
-    && apt autoremove -y  \
-    && apt purge -y \
-    && rm -rfv /tmp/* \
-    && rm -rfv /var/tmp/*
-
-
+log INFO "You may now run the other scripts as needed"
 log INFO "Done"
