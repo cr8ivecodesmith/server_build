@@ -1,5 +1,9 @@
 #!/bin/bash
 # Installs and configures basic server security
+SCRIPT=$(basename $0)
+SCRIPTPATH=$(readlink -f $0)
+SCRIPTDIR=$(dirname $SCRIPTPATH)
+FILENAME="${SCRIPT%.*}"
 
 function log {
     level=$1

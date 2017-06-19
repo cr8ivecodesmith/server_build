@@ -10,7 +10,7 @@ SRVDOTFILES=srv-dotfiles.tar.gz
 # Edit the ff. variables accordingly
 SUPERUSER=yoursuperuser
 SUPERPASS=yoursuperpass
-PRIVKEY_STR="""
+PUBKEY_STR="""
 ssh-rsa <LONG_RSA_STR> ${SUPERUSER}@localhost
 """
 
@@ -101,7 +101,7 @@ tar xvf $SRVDOTFILES \
     --overwrite
 mkdir -p /home/$SUPERUSER/.ssh
 chmod 700 /home/$SUPERUSER/.ssh
-echo $PRIVKEY_STR > /home/$SUPERUSER/.ssh/authorized_keys
+echo $PUBKEY_STR > /home/$SUPERUSER/.ssh/authorized_keys
 chmod 600 /home/$SUPERUSER/.ssh/authorized_keys
 chown $SUPERUSER:$SUPERUSER -Rf /home/$SUPERUSER
 
