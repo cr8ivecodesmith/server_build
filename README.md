@@ -1,15 +1,26 @@
 Server Build
 ============
 
-Configuration for servers
+Configuration for Ubuntu 16.04 servers
+
+
+NOTE:
+
+This might still work for other Ubuntu/Debian versions. Adjust the commands
+where necessary.
 
 
 ## Usage
 
-1.) Make sure the scripts are executable
+1.) Copy and extract this to your server
 
 ```
-chmod +x *.sh
+$ apt update && apt install -y unzip
+$ wget -N https://github.com/cr8ivecodesmith/server_build/archive/master.zip \
+    -O /root/server_build.zip
+$ cd /root/
+$ unzip server_build.zip
+$ chmod +x server_build-master/*.sh
 ```
 
 2.) Edit the necessary variables in the `server_build.sh` script
