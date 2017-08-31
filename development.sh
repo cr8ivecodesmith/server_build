@@ -22,7 +22,7 @@ fi
 
 
 log INFO "Installing development and build packages"
-apt install -y \
+apt -o Acquire::ForceIPv4=true install -y \
     build-essential \
     gcc \
     g++ \

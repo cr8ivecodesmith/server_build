@@ -22,7 +22,7 @@ fi
 
 
 log INFO "Installing security packages"
-apt install -y \
+apt -o Acquire::ForceIPv4=true install -y \
     sendmail \
     fail2ban \
     ufw

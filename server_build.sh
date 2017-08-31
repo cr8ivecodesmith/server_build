@@ -39,11 +39,11 @@ fi
 
 
 log INFO "Upgrading initial packages"
-apt update --fix-missing && apt upgrade -y
+apt -o Acquire::ForceIPv4=true update --fix-missing && apt upgrade -y
 
 
 log INFO "Installing other packages"
-apt install -y \
+apt -o Acquire::ForceIPv4=true install  -y \
     sudo \
     lsb-release \
     apt-transport-https \
@@ -69,7 +69,8 @@ sudo add-apt-repository \
 
 
 log INFO "Installing docker"
-apt-get update --fix-missing && apt-get install -y docker-ce=$DOCKER_VER
+apt -o Acquire::ForceIPv4=true update --fix-missing \
+    && apt -o Acquire::ForceIPv4=true install -y docker-ce=$DOCKER_VER
 
 
 log INFO "Installing docker-compose"
