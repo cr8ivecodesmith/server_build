@@ -10,7 +10,7 @@ FILENAME="${SCRIPT%.*}"
 # docker-compose should be updated accordingly as well. To check the latest
 # version of compose go to:
 # https://github.com/docker/compose/releases
-DOCKER_VER=17.06.1~ce-0~ubuntu-xenial
+DOCKER_VER=17.06.2~ce-0~ubuntu
 COMPOSE_VER=1.15.0
 
 
