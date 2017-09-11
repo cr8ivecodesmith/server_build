@@ -30,7 +30,7 @@ if ! [ $(id -u) = 0 ]; then
 fi
 
 
-log INFO "Upgrading initial packages"
+log INFO "Updating initial packages"
 apt -o Acquire::ForceIPv4=true update --fix-missing
 
 
