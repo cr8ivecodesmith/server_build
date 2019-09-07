@@ -11,7 +11,7 @@ FILENAME="${SCRIPT%.*}"
 # version of compose go to:
 # https://github.com/docker/compose/releases
 DOCKER_VER=17.06.2~ce-0~ubuntu
-COMPOSE_VER=1.15.0
+COMPOSE_VER=1.24.1
 
 
 function log {
@@ -53,7 +53,7 @@ sudo add-apt-repository \
 
 log INFO "Installing docker"
 apt -o Acquire::ForceIPv4=true update --fix-missing \
-    && apt -o Acquire::ForceIPv4=true install -y docker-ce=$DOCKER_VER
+    && apt -o Acquire::ForceIPv4=true install -y docker-ce
 
 
 log INFO "Installing docker-compose"

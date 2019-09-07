@@ -33,15 +33,9 @@ apt -o Acquire::ForceIPv4=true install -y \
     zlib1g-dev \
     libsqlite3-dev \
     libjpeg-dev \
-    libpng12-dev \
+    libpng-dev \
     python3-dev \
-    python3-setuptools \
-    python3-pip \
-    python3-venv \
-    python-dev \
-    python-setuptools \
-    python-pip \
-    python-virtualenv
+    python3-setuptools
 
 
 log INFO "Done"

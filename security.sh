@@ -40,9 +40,8 @@ ufw default deny incoming
 ufw allow http
 ufw allow https
 ufw allow ssh
-ufw allow 2376/tcp
 ufw allow 60000:60003/udp
-ufw allow 8000,8080,5000/tcp
+ufw allow 8000,8080,8888,5555,5000/tcp
 ufw reload
 
 
@@ -54,6 +53,7 @@ service fail2ban restart
 
 
 log INFO "Configuring SSH"
+cp -vf /etc/ssh/sshd_config /etc/ssh/sshd_config-orig
 cp -vf $SCRIPTDIR/conf/sshd_config.deb /etc/ssh/sshd_config
 chmod 600 /etc/ssh/sshd_config
 service ssh restart
